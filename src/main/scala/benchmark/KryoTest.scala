@@ -7,7 +7,7 @@ import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Output
 
-object KryoSupport {
+object KryoTest {
   val kryo = new Kryo()
   val obj = benchmark.JacksonTest.decode()
   kryo.register(classOf[Data.Type], new MySerializer, 1)
@@ -72,7 +72,7 @@ object KryoSupport {
     }
   }
 
-  //DataOutputStream, BufferedOutputStream,  ByteArrayOutputStream.
+  //DataOutputStream, BufferedOutputStream,  ByteArrayOutputStream
   def roundTrip: Data.Type = {
     val bytes = new ByteArrayOutputStream
     val out: Output = new Output(bytes)

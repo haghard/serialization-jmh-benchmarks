@@ -1,5 +1,3 @@
-
-
 scalaVersion := "2.12.4"
 
 name := "serialization-jmh-benchmarks"
@@ -22,7 +20,5 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser",
   "io.circe" %% "circe-jackson28"
 ).map(_ % circeVersion)
-
-scalacOptions in Test ++= Seq("-Yrangepos")
 
 enablePlugins(JmhPlugin)

@@ -1,8 +1,6 @@
 package benchmark
 
-import org.openjdk.jmh.annotations._
-
-class DecodeBenchmark {
+class Benchmark {
   /*
   @Benchmark
   def circeJackson(): Unit = {
@@ -34,26 +32,26 @@ class DecodeBenchmark {
   }
   */
 
-  @Benchmark
-  def jacksonDecodeEncode(): Unit = {
+  @org.openjdk.jmh.annotations.Benchmark
+  def jackson(): Unit = {
     //obj -> json
     //json -> bytes
     //bytes -> obj
     JacksonTest.roundTrip
   }
 
-  @Benchmark
-  def circe1(): Unit = {
+  @org.openjdk.jmh.annotations.Benchmark
+  def circe(): Unit = {
     //obj -> json
     //json -> bytes
     //bytes -> obj
     CirceJacksonSupport.roundTrip
   }
 
-  @Benchmark
-  def kryoRoundTrip(): Unit = {
+  @org.openjdk.jmh.annotations.Benchmark
+  def kryo(): Unit = {
     //obj -> bytes
     //bytes -> obj
-    KryoSupport.roundTrip
+    KryoTest.roundTrip
   }
 }

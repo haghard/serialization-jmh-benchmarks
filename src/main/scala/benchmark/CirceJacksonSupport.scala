@@ -5,8 +5,8 @@ import io.circe._
 import io.circe.generic.auto._
 
 object CirceJacksonSupport {
-  private val decoder = implicitly[Decoder[Data.Type]]
-  private val encoder = implicitly[Encoder[Data.Type]]
+  val decoder = implicitly[Decoder[Data.Type]]
+  val encoder = implicitly[Encoder[Data.Type]]
 
   def decode(): Either[Error, Type] = {
     jackson.decode[Data.Type](Data.jsonBody)(decoder)

@@ -3,20 +3,19 @@ package benchmark.runner
 import java.io.{File, FileOutputStream}
 import org.openjdk.jmh.results.RunResult
 import org.openjdk.jmh.runner.options.CommandLineOptions
+import scala.collection.JavaConverters._
 
 /*
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home
 
 runMain benchmark.runner.Runner -i 5 -wi 5 -f 2 -t 1
 
-8-131
 [info] DecodeBenchmark.jacksonDecodeEncode          thrpt   10   84755.290 ± 7267.595  ops/s
 [info] DecodeBenchmark.kryoFromObject2BytesAndBack  thrpt   10  282205.884 ± 8059.902  ops/s
 
 */
 
 object Runner {
-  import scala.collection.JavaConverters._
   val enc = "UTF-8"
 
   def main(args: Array[String]): Unit = {
