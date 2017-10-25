@@ -8,5 +8,5 @@
     [info] Benchmark.jackson  thrpt   10   72081.163 ±  7393.306  ops/s
     [info] Benchmark.kryo     thrpt   10  236361.521 ± 17001.818  ops/s
     
-    Size: 694 vs 1015 bite
+    Size: 694 vs 1015 bytes
     
