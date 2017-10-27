@@ -11,27 +11,30 @@ class Benchmark {
   def circeJacksonAuto(): Unit = {
     CirceJacksonTest.decodeAuto()
   }
+  */
 
-  @Benchmark
+  @org.openjdk.jmh.annotations.Benchmark
   def jacksonDecode(): Unit = {
-   JacksonTest.decode()
+    JacksonTest.roundTrip
   }
 
+  /*
   @Benchmark
   def sprayDecode(): Unit = {
    SprayJsonTest.decodeEncode()
   }
-
-  @Benchmark
+  */
+  @org.openjdk.jmh.annotations.Benchmark
   def circeJacksonDecodeEncode(): Unit = {
-    CirceJacksonTest.decodeEncode
+    CirceJacksonSupport.roundTrip
   }
+  /*
   @Benchmark
   def circeJackson(): Unit = {
     CirceJacksonTest.decode()
   }
   */
-
+/*
   @org.openjdk.jmh.annotations.Benchmark
   def jackson(): Unit = {
     //obj -> json
@@ -46,12 +49,26 @@ class Benchmark {
     //json -> bytes
     //bytes -> obj
     CirceJacksonSupport.roundTrip
-  }
+  }*/
 
   @org.openjdk.jmh.annotations.Benchmark
   def kryo(): Unit = {
     //obj -> bytes
     //bytes -> obj
-    KryoTest.roundTrip
+    //KryoTest.roundTrip
+    KryoTest.roundTripWithSerializer
   }
+
+  @org.openjdk.jmh.annotations.Benchmark
+  def javaSerialization(): Unit = {
+    JavaSerializationTest.roundTrip
+  }
+
+  @org.openjdk.jmh.annotations.Benchmark
+  def chill(): Unit = {
+    //obj -> bytes
+    //bytes -> obj
+    ChillTest.roundTrip
+  }
+
 }

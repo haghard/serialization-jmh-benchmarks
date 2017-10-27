@@ -1,7 +1,7 @@
 package benchmark
 
 object Data {
-  case class Friend(id: Int, name: String)
+  case class Friend(id: Int, name: String) extends Serializable
   case class Type(
   `_id`: String,
   `index`: Int,
@@ -24,7 +24,7 @@ object Data {
   `tags`: List[String],
   `friends`: List[Friend],
   `greeting`: String,
-  `favoriteFruit`: String)
+  `favoriteFruit`: String) extends Serializable
 
   val jsonBody =
     """

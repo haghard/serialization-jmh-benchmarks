@@ -12,8 +12,8 @@ object CirceJawnTest {
     val doc = jawn.parse(Data.jsonBody)
   }
 
-  private val decoder = implicitly[Decoder[Data.Type]]
-  private val encoder = implicitly[Encoder[Data.Type]]
+  implicit val decoder = implicitly[Decoder[Data.Type]]
+  implicit val encoder = implicitly[Encoder[Data.Type]]
 
   def roundTrip2: String = {
     val obj = jawn.decode[Data.Type](Data.jsonBody)(decoder).right.get

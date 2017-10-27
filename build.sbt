@@ -8,6 +8,7 @@ libraryDependencies ++= Seq(
 	"com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.1",
   "io.spray" %%  "spray-json" % "1.3.3",
   "com.esotericsoftware" % "kryo" % "4.0.1",
+  "com.twitter" %%  "chill" % "0.9.2",
   "org.scalactic" %% "scalactic" % "3.0.1",
   "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 )
