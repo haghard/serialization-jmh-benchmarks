@@ -1,4 +1,5 @@
 package benchmark
+
 import java.io._
 
 import benchmark.Data.Friend
@@ -11,10 +12,11 @@ import scala.reflect.ClassTag
 
 object KryoTest {
   val kryo = new Kryo()
-  val obj = benchmark.JacksonTest.decode()
-  kryo.register(classOf[Data.Type], new MySerializer, 1)
+  kryo.register(classOf[Data.Type], new MyDataSerializer, 1)
 
-  class MySerializer extends Serializer[Data.Type] {
+  val obj = benchmark.JacksonTest.decode()
+
+  class MyDataSerializer extends Serializer[Data.Type] {
     override def write(kryo: Kryo, out: Output, obj: Data.Type): Unit = {
       out.writeString(obj.`_id`)
       out.writeInt(obj.`index`)
@@ -37,7 +39,7 @@ object KryoTest {
       out.writeString(obj.`tags`.mkString(","))
       //*******friends*************************
       out.writeInt(obj.`friends`.size)
-      obj.`friends`.foreach { f =>
+      obj.`friends`.foreach { f ⇒
         out.writeInt(f.id)
         out.writeString(f.name)
       }
@@ -46,8 +48,8 @@ object KryoTest {
       out.writeString(obj.`favoriteFruit`)
     }
 
-    override def read(kryo: Kryo, in: Input, clazz: Class[Data.Type]) = {
-      new Data.Type(
+    override def read(kryo: Kryo, in: Input, clazz: Class[Data.Type]): Data.Type =
+      Data.Type(
         in.readString,
         in.readInt,
         in.readString,
@@ -67,50 +69,35 @@ object KryoTest {
         in.readDouble,
         in.readDouble,
         in.readString.split(",").toList,
-        List.range(0, in.readInt()).map(_ => Friend(in.readInt, in.readString)),
+        List.range(0, in.readInt).map(_ ⇒ Friend(in.readInt, in.readString)),
         in.readString,
         in.readString
       )
-    }
   }
 
-  //DataOutputStream, BufferedOutputStream,  ByteArrayOutputStream
   def roundTripWithSerializer: Data.Type = {
-    deserialize[Data.Type](serialize(obj))
-
-    /*val bytes = new ByteArrayOutputStream
-    val out: Output = new Output(bytes)
-    try { kryo.writeObject(out, obj) } finally out.close
-    val in = new ByteArrayInputStream(bytes.toByteArray)
-    try kryo.readObject(new Input(in), classOf[Data.Type])
-    finally {
-      in.close
-      bytes.close
-    }*/
+    val bts = serialize(obj)
+    deserialize[Data.Type](bts)
   }
 
   def serialize[T](out: T): Array[Byte] = {
-    val bytes = new ByteArrayOutputStream
-    val out: Output = new Output(bytes)
-    try {
-      kryo.writeObject(out, obj)
-    } finally {
-      bytes.close
+    val outBts      = new ByteArrayOutputStream(1024)
+    val out: Output = new Output(outBts)
+    try kryo.writeObject(out, obj)
+    finally {
+      outBts.close
       out.close
     }
-    bytes.toByteArray
+    outBts.toByteArray
   }
 
-  private def deserialize[T: ClassTag](bytes: Array[Byte]): T = {
-    val bis = new ByteArrayInputStream(bytes)
-    val in: Input = new Input(bis)
-    try {
-      kryo.readObject(
-        in,
-        implicitly[ClassTag[T]].runtimeClass.asInstanceOf[Class[T]])
-    } finally {
+  def deserialize[T: ClassTag](bytes: Array[Byte]): T = {
+    //val inBts       = new ByteArrayInputStream(bytes)
+    val in: Input = new Input(bytes)
+    try kryo.readObject(in, implicitly[ClassTag[T]].runtimeClass.asInstanceOf[Class[T]])
+    finally {
       in.close
-      bis.close
+      //inBts.close
     }
   }
 }

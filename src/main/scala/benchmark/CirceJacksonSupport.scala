@@ -8,17 +8,16 @@ object CirceJacksonSupport {
   val decoder = implicitly[Decoder[Data.Type]]
   val encoder = implicitly[Encoder[Data.Type]]
 
-  def decode(): Either[Error, Type] = {
+  def decode(): Either[Error, Type] =
     jackson.decode[Data.Type](Data.jsonBody)(decoder)
-  }
 
   //val js = io.circe.parser.parse(Data.jsonBody).right.get
   //val	obj = decoder.decodeJson(js).right.get
-  val js = io.circe.parser.parse(Data.jsonBody).right.get
-  val	obj = decoder.decodeJson(js).right.get
+  val js  = io.circe.parser.parse(Data.jsonBody).right.get
+  val obj = decoder.decodeJson(js).right.get
 
   def roundTrip: Data.Type = {
-  	val bytes = encoder(obj).noSpaces.getBytes
+    val bytes = encoder(obj).noSpaces.getBytes
     jackson.decode[Data.Type](new String(bytes)).right.get
   }
 
@@ -27,7 +26,6 @@ object CirceJacksonSupport {
     jackson.jacksonPrint(encoder(obj))
   }*/
 
-  def decodeAuto(): Either[Error, Type] = {
+  def decodeAuto(): Either[Error, Type] =
     jackson.decode[Data.Type](Data.jsonBody)
-  }
 }

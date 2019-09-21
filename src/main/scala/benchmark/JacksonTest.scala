@@ -24,9 +24,8 @@ object JacksonTest {
     parsed.map(readItem)
   }
 
-  def decode(): Data.Type = {
+  def decode(): Data.Type =
     mapper.readValue[Data.Type](Data.jsonBody)
-  }
 
   val obj = mapper.readValue[Data.Type](Data.jsonBody)
 
@@ -35,7 +34,7 @@ object JacksonTest {
     mapper.readValue[Data.Type](new String(bytes))
   }
 
-  def readItem(map: Map[String, Any]): Data.Type = {
+  def readItem(map: Map[String, Any]): Data.Type =
     Data.Type(
       `_id` = map.get("_id").get.asInstanceOf[String],
       `index` = map.get("index").get.asInstanceOf[Int],
@@ -64,7 +63,6 @@ object JacksonTest {
       `greeting` = map.get("greeting").get.asInstanceOf[String],
       `favoriteFruit` = map.get("favoriteFruit").get.asInstanceOf[String]
     )
-  }
 
   def readFriend(map: Map[String, Any]): Friend =
     Friend(

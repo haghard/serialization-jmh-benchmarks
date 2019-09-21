@@ -8,9 +8,8 @@ import scala.reflect.ClassTag
 
 object JavaSerializationTest {
 
-  def roundTrip: Data.Type = {
+  def roundTrip: Data.Type =
     roundTripJava[Data.Type](obj)
-  }
 
   def jserialize[T <: Serializable](t: T): Array[Byte] = {
     val bos = new ByteArrayOutputStream
@@ -27,7 +26,7 @@ object JavaSerializationTest {
   def jdeserialize[T](bytes: Array[Byte])(implicit cmf: ClassTag[T]): T = {
     val cls = cmf.runtimeClass.asInstanceOf[Class[T]]
     val bis = new ByteArrayInputStream(bytes)
-    val in = new ObjectInputStream(bis)
+    val in  = new ObjectInputStream(bis)
     try {
       cls.cast(in.readObject)
     } finally {

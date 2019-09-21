@@ -1,30 +1,33 @@
 package benchmark
 
 object Data {
+
   case class Friend(id: Int, name: String) extends Serializable
+
   case class Type(
-  `_id`: String,
-  `index`: Int,
-  `guid`: String,
-  `isActive`: Boolean,
-  `balance`: String,
-  `picture`: String,
-  `age`: Int,
-  `eyeColor`: String,
-  `name`: String,
-  `gender`: String,
-  `company`: String,
-  `email`: String,
-  `phone`: String,
-  `address`: String,
-  `about`: String,
-  `registered`: String,
-  `latitude`: Double,
-  `longitude`: Double,
-  `tags`: List[String],
-  `friends`: List[Friend],
-  `greeting`: String,
-  `favoriteFruit`: String) extends Serializable
+    `_id`: String,
+    `index`: Int,
+    `guid`: String,
+    `isActive`: Boolean,
+    `balance`: String,
+    `picture`: String,
+    `age`: Int,
+    `eyeColor`: String,
+    `name`: String,
+    `gender`: String,
+    `company`: String,
+    `email`: String,
+    `phone`: String,
+    `address`: String,
+    `about`: String,
+    `registered`: String,
+    `latitude`: Double,
+    `longitude`: Double,
+    `tags`: List[String],
+    `friends`: List[Friend],
+    `greeting`: String,
+    `favoriteFruit`: String
+  ) extends Serializable
 
   val jsonBody =
     """
