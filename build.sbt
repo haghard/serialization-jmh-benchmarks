@@ -10,7 +10,7 @@ libraryDependencies ++= Seq(
   "com.esotericsoftware" % "kryo" % "4.0.2", //"5.0.0-RC4"
   "com.twitter" %%  "chill" % "0.9.2",
   "org.scalactic" %% "scalactic" % "3.0.1",
-  "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 )
 
 val circeVersion = "0.8.0"
