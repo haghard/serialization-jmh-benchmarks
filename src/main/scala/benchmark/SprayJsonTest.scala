@@ -17,9 +17,9 @@ object SprayJsonTest {
   def decode(): Data.Type =
     Data.jsonBody.parseJson.convertTo[Data.Type]
 
-  def decodeEncode(): String = {
+  def roundTrip: String = {
     val obj = Data.jsonBody.parseJson.convertTo[Data.Type]
-    obj.toJson.prettyPrint
+    obj.toJson.compactPrint
   }
 
   def invalidDecode(): Unit =

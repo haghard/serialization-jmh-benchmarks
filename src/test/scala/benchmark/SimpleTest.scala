@@ -12,7 +12,7 @@ class SimpleTest extends FunSpec with Matchers {
     }
 
     it("should parse using Jackson") {
-      JacksonTest.decode() should be(answer)
+      JacksonTest.decode should be(answer)
     }
 
     it("should parse using CirceJackson") {

@@ -24,7 +24,7 @@ object JacksonTest {
     parsed.map(readItem)
   }
 
-  def decode(): Data.Type =
+  def decode: Data.Type =
     mapper.readValue[Data.Type](Data.jsonBody)
 
   val obj = mapper.readValue[Data.Type](Data.jsonBody)

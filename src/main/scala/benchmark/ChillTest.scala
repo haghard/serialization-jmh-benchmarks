@@ -1,3 +1,4 @@
+/*
 package benchmark
 
 import com.twitter.chill.{KryoInstantiator, KryoPool, /*KryoSerializer,*/ ScalaKryoInstantiator}
@@ -22,3 +23,4 @@ object ChillTest {
   def roundTrip: Data.Type =
     deserialize[Data.Type](serialize(obj))
 }
+ */

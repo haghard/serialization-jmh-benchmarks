@@ -1,0 +1,122 @@
+[
+{
+   "type":"record",
+   "name":"AvroFriend",
+   "namespace":"com.domain.users",
+   "version": "1",
+   "fields":[
+     {
+        "name":"id",
+        "type":"int"
+     },
+     {
+        "name":"name",
+        "type":"string"
+     }
+   ]
+},
+{
+   "type":"record",
+   "name":"AvroType",
+   "namespace":"com.domain.users",
+   "version": "1",
+   "fields":[
+      {
+         "name":"_id",
+         "type":"string"
+      },
+      {
+         "name":"index",
+         "type":"int"
+      },
+      {
+         "name":"guid",
+         "type":"string"
+      },
+      {
+         "name":"isActive",
+         "type":"boolean"
+      },
+      {
+         "name":"balance",
+         "type":"string"
+      },
+      {
+         "name":"picture",
+         "type":"string"
+      },
+      {
+         "name":"age",
+         "type":"int"
+      },
+      {
+         "name":"eyeColor",
+         "type":"string"
+      },
+      {
+         "name":"name",
+         "type":"string"
+      },
+      {
+         "name":"gender",
+         "type":"string"
+      },
+      {
+         "name":"company",
+         "type":"string"
+      },
+      {
+         "name":"email",
+         "type":"string"
+      },
+      {
+         "name":"phone",
+         "type":"string"
+      },
+      {
+         "name":"address",
+         "type":"string"
+      },
+      {
+         "name":"about",
+         "type":"string"
+      },
+      {
+         "name":"registered",
+         "type":"string"
+      },
+      {
+         "name":"latitude",
+         "type":"double"
+      },
+      {
+         "name":"longitude",
+         "type":"double"
+      },
+      {
+        "name" : "tags",
+        "type" : {
+          "type" : "array",
+          "items" : "string",
+          "default": []
+        }
+      },
+      {
+        "name" : "friends",
+        "type" : {
+          "type" : "array",
+          "items" : "AvroFriend",
+          "default": []
+        }
+      },
+      {
+         "name":"greeting",
+         "type":"string"
+      },
+      {
+         "name":"favoriteFruit",
+         "type":"string"
+      }
+   ]
+}
+]
