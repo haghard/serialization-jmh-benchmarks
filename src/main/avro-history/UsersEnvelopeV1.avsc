@@ -1,0 +1,54 @@
+{
+   "type":"record",
+   "name":"UserEnv",
+   "namespace":"com.domain.users",
+   "version": "1",
+   "fields":[
+      {
+         "name":"correlationId",
+         "type":"string"
+      },
+      {
+         "name":"when",
+         "type":"long"
+      },
+      {
+         "name":"tz",
+         "type":"string"
+      },
+      {
+         "name": "payload",
+         "type":[
+            {
+               "name": "Joined",
+               "type": "record",
+               "namespace": "com.domain.users",
+               "fields": [
+                   { "name": "login", "type": "string" },
+                   { "name": "email", "type": [ "null", "string" ], "default" : null, "doc": "optional email" },
+                   { "name": "token", "type": [ "null", "string" ], "default" : null, "doc": "optional auth token" },
+                   { "name": "promoCode", "type": "int", "default" : 123, "doc": "Promo code that will be deleted in v2" }
+               ]
+            },
+            {
+               "name": "TextAdded",
+               "type": "record",
+               "namespace": "com.domain.users",
+               "fields": [
+                   { "name": "seqNum", "type": "long" },
+                   { "name": "text", "type": "string" }
+               ]
+            },
+            {
+               "name": "Disconnected",
+               "type": "record",
+               "namespace": "com.domain.users",
+               "fields": [
+                 { "name": "login", "type": "string" },
+                 { "name": "email", "type": [ "null", "string" ], "default" : null, "doc": "optional email" }
+               ]
+            }
+         ]
+      }
+   ]
+}

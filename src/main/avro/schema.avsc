@@ -98,16 +98,18 @@
         "type" : {
           "type" : "array",
           "items" : "string",
+          //"java-class": "java.util.List",
           "default": []
         }
       },
       {
-        "name" : "friends",
-        "type" : {
-          "type" : "array",
-          "items" : "AvroFriend",
-          "default": []
-        }
+         "name": "friends",
+         "type": {
+            "type": "array",
+            "items": "AvroFriend",
+            //"java-class": "java.util.List",
+            "default": []
+         }
       },
       {
          "name":"greeting",

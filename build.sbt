@@ -10,6 +10,7 @@ libraryDependencies ++= Seq(
   "com.esotericsoftware" % "kryo" % "4.0.2", //"5.0.0-RC4"
   //"com.twitter" %%  "chill" % "0.9.3",
   "org.apache.avro" % "avro" % "1.9.1",
+  "commons-codec" % "commons-codec" % "1.11",
   "org.scalactic" %% "scalactic" % "3.0.8",
   "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 )

@@ -10,6 +10,7 @@ import org.apache.avro.specific.{SpecificDatumReader, SpecificDatumWriter}
 
 import scala.util.Using.Releasable
 import scala.util.Using
+import java.io.{FileReader, FileWriter}
 
 object AvroSupport {
 
@@ -46,6 +47,10 @@ object AvroSupport {
     deserialize(bts)
   }
 
+  /*Using.resources(new FileReader("input.txt"), new FileWriter("output.txt")) { (reader, writer) ⇒
+    reader.read()
+  }*/
+
   implicit object BinaryEncoderIsReleasable extends Releasable[BinaryEncoder] {
     def release(resource: BinaryEncoder): Unit =
       resource.flush
@@ -54,7 +59,7 @@ object AvroSupport {
   //https://medium.com/wix-engineering/my-favorite-new-features-of-scala-2-13-standard-library-909a89b0da4
   def serialize(ev: AvroType): Array[Byte] =
     Using.resource(new ByteArrayOutputStream()) { out ⇒
-      Using.resource(EncoderFactory.get().binaryEncoder(out, null)) { enc ⇒
+      Using.resource(EncoderFactory.get.binaryEncoder(out, null)) { enc ⇒
         new SpecificDatumWriter[AvroType](schema).write(ev, enc)
       }
       out.toByteArray
@@ -62,7 +67,7 @@ object AvroSupport {
 
   def deserialize(bts: Array[Byte]): AvroType = {
     val reader  = new SpecificDatumReader[AvroType](schema)
-    val decoder = DecoderFactory.get().binaryDecoder(bts, null)
+    val decoder = DecoderFactory.get.binaryDecoder(bts, null)
     reader.read(null, decoder)
   }
 }
