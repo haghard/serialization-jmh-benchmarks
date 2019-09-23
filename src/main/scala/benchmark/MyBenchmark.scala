@@ -25,12 +25,16 @@ class MyBenchmark {
   def javaSerialization(): Unit =
     JavaSerializationTest.roundTrip
    */
-  @Benchmark
-  def avro(): Unit =
-    AvroSupport.roundTrip
 
   @Benchmark
   def kryo(): Unit =
     KryoTest.roundTrip
 
+  @Benchmark
+  def avro(): Unit =
+    AvroSupport.roundTrip
+
+  @Benchmark
+  def proto(): Unit =
+    ProtoSupport.roundTrip
 }

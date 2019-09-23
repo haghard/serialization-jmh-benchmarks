@@ -83,9 +83,7 @@ object KryoTest {
 
   def serialize[T](out: T): Array[Byte] =
     Using.resource(new ByteArrayOutputStream()) { outBts ⇒
-      val out: Output = new Output(outBts)
-      try kryo.writeObject(out, obj)
-      finally out.close
+      Using.resource(new Output(outBts))(kryo.writeObject(_, obj))
       outBts.toByteArray
     }
 

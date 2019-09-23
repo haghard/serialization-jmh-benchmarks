@@ -12,6 +12,8 @@ import scala.util.Using.Releasable
 import scala.util.Using
 import java.io.{FileReader, FileWriter}
 
+//avro:generate
+
 object AvroSupport {
 
   private val obj    = benchmark.JacksonTest.decode
@@ -47,6 +49,7 @@ object AvroSupport {
     deserialize(bts)
   }
 
+  //https://medium.com/wix-engineering/my-favorite-new-features-of-scala-2-13-standard-library-909a89b0da4
   /*Using.resources(new FileReader("input.txt"), new FileWriter("output.txt")) { (reader, writer) ⇒
     reader.read()
   }*/
@@ -56,7 +59,6 @@ object AvroSupport {
       resource.flush
   }
 
-  //https://medium.com/wix-engineering/my-favorite-new-features-of-scala-2-13-standard-library-909a89b0da4
   def serialize(ev: AvroType): Array[Byte] =
     Using.resource(new ByteArrayOutputStream()) { out ⇒
       Using.resource(EncoderFactory.get.binaryEncoder(out, null)) { enc ⇒
