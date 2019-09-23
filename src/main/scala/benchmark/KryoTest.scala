@@ -8,14 +8,12 @@ import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryo.io.Output
 
-import scala.reflect.ClassTag
 import scala.util.Using
 
 object KryoTest {
+
   val kryo = new Kryo()
   kryo.register(classOf[Data.Type], new MyDataSerializer, 1)
-
-  val obj = benchmark.JacksonTest.decode
 
   class MyDataSerializer extends Serializer[Data.Type] {
     override def write(kryo: Kryo, out: Output, obj: Data.Type): Unit = {
@@ -76,20 +74,17 @@ object KryoTest {
       )
   }
 
-  def roundTrip: Data.Type = {
+  def roundTrip(obj: Data.Type): Data.Type = {
     val bts = serialize(obj)
-    deserialize[Data.Type](bts)
+    deserialize(bts)
   }
 
-  def serialize[T](out: T): Array[Byte] =
+  def serialize(obj: Data.Type): Array[Byte] =
     Using.resource(new ByteArrayOutputStream()) { outBts ⇒
       Using.resource(new Output(outBts))(kryo.writeObject(_, obj))
       outBts.toByteArray
     }
 
-  def deserialize[T: ClassTag](bytes: Array[Byte]): T = {
-    val in: Input = new Input(bytes)
-    try kryo.readObject(in, implicitly[ClassTag[T]].runtimeClass.asInstanceOf[Class[T]])
-    finally in.close
-  }
+  def deserialize(bytes: Array[Byte]): Data.Type =
+    Using.resource(new Input(bytes))(kryo.readObject(_, classOf[Data.Type]))
 }

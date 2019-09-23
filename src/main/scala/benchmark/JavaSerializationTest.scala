@@ -1,3 +1,5 @@
+/*
+
 package benchmark
 
 import java.io._
@@ -38,3 +40,4 @@ object JavaSerializationTest {
   private def roundTripJava[T <: Serializable](t: T)(implicit cmf: ClassTag[T]): T =
     jdeserialize(jserialize(t))
 }
+ */

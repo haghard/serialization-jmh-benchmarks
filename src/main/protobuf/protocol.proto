@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "scalapb/scalapb.proto";
+import "google/protobuf/wrappers.proto";
 
 package com.domain.users.pb;
 
@@ -20,9 +21,9 @@ message TypePB {
     string eyeColor = 8;
     string name = 9;
     string gender = 10;
-    string company = 11;
-    string email = 12;
-    string phone = 13;
+    google.protobuf.StringValue company = 11;
+    google.protobuf.StringValue email = 12;
+    google.protobuf.StringValue phone = 13;
     string address = 14;
     string about = 15;
     string registered = 16;
