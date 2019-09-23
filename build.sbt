@@ -16,8 +16,6 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 )
 
-//lazy val protocol = RootProject(file("../protocol"))
-
 val circeVersion = "0.12.0"
 
 scalafmtOnCompile := true
