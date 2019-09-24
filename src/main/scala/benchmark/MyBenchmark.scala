@@ -74,8 +74,8 @@ object MyBenchmark {
 }
 
 /* Default settings for benchmarks in this class */
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
-@BenchmarkMode(Array(Mode.Throughput, Mode.AverageTime))
+//@OutputTimeUnit(TimeUnit.MICROSECONDS)
+//@BenchmarkMode(Array(Mode.AverageTime)) //Mode.Throughput,
 class MyBenchmark {
 
   /*
